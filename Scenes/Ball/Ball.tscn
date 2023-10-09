@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgdth2bcnuoh2"]
+
+[ext_resource type="Texture2D" uid="uid://b7hjigik8n7x3" path="res://Addons/Kenney1BitPlatformer/Tilemap/monochrome_tilemap_transparent_packed.png" id="1_8y531"]
+[ext_resource type="Script" path="res://Scenes/Ball/Ball.gd" id="1_yx8xg"]
+[ext_resource type="AudioStream" uid="uid://dvri08fq5vmco" path="res://Addons/KenneyAudio/impactPlank_medium_002.ogg" id="3_wyj1a"]
+[ext_resource type="AudioStream" uid="uid://htbfvxhye5ln" path="res://Addons/KenneyAudio/impactMining_003.ogg" id="4_ag65x"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2mn0f"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qir5"]
+size = Vector2(10, 10)
+
+[node name="Ball" type="RigidBody2D" groups=["ball"]]
+collision_layer = 4
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_2mn0f")
+gravity_scale = 0.0
+can_sleep = false
+continuous_cd = 1
+max_contacts_reported = 2
+contact_monitor = true
+linear_damp_mode = 1
+angular_damp_mode = 1
+angular_damp = 500.0
+script = ExtResource("1_yx8xg")
+speed = 100.0
+speed_increment = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.698039, 1, 0.619608, 1)
+texture_filter = 1
+texture = ExtResource("1_8y531")
+region_enabled = true
+region_rect = Rect2(144, 288, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8qir5")
+
+[node name="AudioHitPaddle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wyj1a")
+
+[node name="AudioHitWalls" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ag65x")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
