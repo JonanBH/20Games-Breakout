@@ -14,3 +14,9 @@ func _process(delta):
 		paddle.move_left(delta)
 	elif move > 0:
 		paddle.move_right(delta)
+		
+	if Input.is_action_just_pressed("shoot"):
+		paddle.shoot_ball()
+
+func attach_ball_to_paddle(ball):
+	paddle.attach_ball(ball)

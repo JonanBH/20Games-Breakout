@@ -9,21 +9,21 @@
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qir5"]
-size = Vector2(10, 10)
+[sub_resource type="CircleShape2D" id="CircleShape2D_70fsk"]
+radius = 7.07107
 
 [node name="Ball" type="RigidBody2D" groups=["ball"]]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 11
 physics_material_override = SubResource("PhysicsMaterial_2mn0f")
 gravity_scale = 0.0
 can_sleep = false
-continuous_cd = 1
+continuous_cd = 2
 max_contacts_reported = 2
 contact_monitor = true
 linear_damp_mode = 1
 angular_damp_mode = 1
-angular_damp = 500.0
+angular_damp = 1000.0
 script = ExtResource("1_yx8xg")
 speed = 100.0
 speed_increment = 5.0
@@ -36,7 +36,7 @@ region_enabled = true
 region_rect = Rect2(144, 288, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8qir5")
+shape = SubResource("CircleShape2D_70fsk")
 
 [node name="AudioHitPaddle" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_wyj1a")
